@@ -93,16 +93,16 @@ plt.show()
 #     x[i] = np.cos(np.exp(1j * t[i])) # array com o sinal calculado no tempo t
 
 x = np.real(np.exp(1j*10*t))
-ft = (10*t+np.pi/2) % np.pi - np.pi/2
+ft = (10*t+np.pi) % (2*np.pi) - np.pi
 Hn, Hs, Xn, Xs, In, Is , Zn, Zs = man_hilbert(x)
 
 H = hilbert(x)
 
 #Ht = - np.sin(2*np.pi*10*t) - 0.5*np.sin(2*np.pi*3*t) # transformada de hilbert teórica de cos
 
-fn = np.arctan(np.imag(Hn)/x) #achei que precisava de -
-fs = np.arctan(np.imag(Hs)/x)
-f = np.arctan(np.imag(H)/x)
+fn = np.arctan2(np.imag(Hn),x) #achei que precisava de -
+fs = np.arctan2(np.imag(Hs),x)
+f = np.arctan2(np.imag(H),x)
 
 
 plt.plot(t,ft, color='black', lw = 2)
@@ -113,16 +113,16 @@ plt.plot(t,f, color='green', ls = '-.', lw = 2)
 plt.show()
 
 x = np.real(np.exp(1j*(10*t)**2))
-ft = ((10*t)**2 + np.pi/2) % np.pi - np.pi/2
+ft = ((10*t)**2 + np.pi) % (2*np.pi) - np.pi
 Hn, Hs, Xn, Xs, In, Is , Zn, Zs = man_hilbert(x)
 
 H = hilbert(x)
 
 #Ht = - np.sin(2*np.pi*10*t) - 0.5*np.sin(2*np.pi*3*t) # transformada de hilbert teórica de cos
 
-fn = np.arctan(np.imag(Hn)/x) #achei que precisava de -
-fs = np.arctan(np.imag(Hs)/x)
-f = np.arctan(np.imag(H)/x)
+fn = np.arctan2(np.imag(Hn),x) #achei que precisava de -
+fs = np.arctan2(np.imag(Hs),x)
+f = np.arctan2(np.imag(H),x)
 
 
 plt.plot(t,ft, color='black', lw = 2)
@@ -155,7 +155,7 @@ x1 = np.real(np.exp(1j*10*t))
 x2 = np.real(np.exp(1j*20*t))
 x = np.array([x1,x2])
 H = hilbert(x)
-f = np.arctan(np.imag(H)/x)
+f = np.arctan2(np.imag(H),x)
 plt.plot(t,f[0], color='black', lw = 2)
 plt.plot(t,f[1], color='blue', ls = '--', lw = 2)
 plt.show()
