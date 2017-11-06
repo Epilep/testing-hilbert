@@ -19,8 +19,8 @@ def man_hilbert(x):
     Is = ifft(Xs)
     return Hn, Hs, Xn, Xs, In, Is, Zn, Zs
 
-
-t = np.arange(start=0, stop=1, step=0.0001) # array com os instantes de tempo
+freq = 0.0001
+t = np.arange(start=0, stop=1, step=freq) # array com os instantes de tempo
 
 
 x = np.cos(2*np.pi*10*t) # array com o sinal calculado no tempo t
@@ -132,3 +132,30 @@ plt.plot(t,f, color='green', ls = '-.', lw = 2)
 
 plt.show()
 
+x1 = np.cos(2*np.pi*10*t) 
+x2 = np.cos(2*np.pi*20*t) 
+x = np.array([x1,x2])
+print(x)
+print(x.shape)
+N  = len(x1)
+z = range(-N//2,N//2)
+
+f = fft(x)#,axis=0)
+print(f)
+print(f.shape)
+plt.plot(z,fftshift(f[0]), color='black', lw = 2)
+plt.plot(z,fftshift(f[1]), color='blue', ls = '--', lw = 2)
+# plt.plot(t,fs, color='red', ls = ':', lw = 2)
+# plt.plot(t,f, color='green', ls = '-.', lw = 2)
+plt.xlim(-22,22)
+plt.show()
+
+
+x1 = np.real(np.exp(1j*10*t))
+x2 = np.real(np.exp(1j*20*t))
+x = np.array([x1,x2])
+H = hilbert(x)
+f = np.arctan(np.imag(H)/x)
+plt.plot(t,f[0], color='black', lw = 2)
+plt.plot(t,f[1], color='blue', ls = '--', lw = 2)
+plt.show()
